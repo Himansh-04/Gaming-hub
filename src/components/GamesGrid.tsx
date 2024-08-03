@@ -3,6 +3,7 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import { px } from "framer-motion";
 import GameCardSkeleton from "./GameCardSkeleton";
+import GameCardContainer from "./GameCardContainer";
 
 const GamesGrid = () => {
   const { games, error ,isLoading} = useGames();
@@ -15,9 +16,11 @@ const GamesGrid = () => {
         spacing={10}
         padding="10px"
       >
-        {isLoading && Skeletons.map(Skeleton=><GameCardSkeleton key={Skeleton}/>)}
+        {isLoading && Skeletons.map(Skeleton=><GameCardContainer><GameCardSkeleton key={Skeleton}/></GameCardContainer>)}
         {games.map((game) => (
-          <GameCard key={game.id} game={game}></GameCard>
+          <GameCardContainer>
+            <GameCard key={game.id} game={game}></GameCard>
+          </GameCardContainer>
         ))}
       </SimpleGrid>
     </>
