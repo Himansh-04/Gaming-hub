@@ -8,15 +8,20 @@ interface Props {
 
 const SearchInput = ({ onSearch }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
-  if (ref.current) onSearch(ref.current.value);
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (ref.current) {
+      onSearch(ref.current.value);
+    }
+  };
+
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault();
-      }}
-    >
+    <form onSubmit={handleSubmit}>
       <InputGroup>
-        <InputLeftElement children={<BsSearch />} />
+        <InputLeftElement pointerEvents="none">
+          <BsSearch />
+        </InputLeftElement>
         <Input
           ref={ref}
           borderRadius={20}
