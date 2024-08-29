@@ -20,7 +20,7 @@ const useGames = (gameQuery: GameQuery) => {
     queryFn: ({pageParam=1}) =>
       apiClient.getAll({
         params: {
-          genres: gameQuery.genre?.id,
+          genres: gameQuery.genreId,
           parent_platforms: gameQuery.platform?.id,
           ordering: gameQuery.sortOrder,
           search: gameQuery.searchText,
@@ -29,7 +29,8 @@ const useGames = (gameQuery: GameQuery) => {
       }),
       getNextPageParam:(lastPage,allPages)=>{
         return lastPage.next? allPages.length+1:undefined;
-      }
+      },
+      staleTime:24*60*60*1000,
   });
 };
 
