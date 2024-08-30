@@ -6,6 +6,7 @@ import DefinitionItem from "../components/DefinitionItem";
 import CriticScore from "../components/CriticScore";
 import GameAttributes from "../components/GameAttributes";
 import GameTrailer from "../components/GameTrailer";
+import GameScreenShots from "../components/GameScreenShots";
 
 const GameDetailPage = () => {
   const { slug } = useParams();
@@ -18,6 +19,7 @@ const GameDetailPage = () => {
       <ExpandableText>{game.description_raw}</ExpandableText>
       <GameAttributes game={game}/>
       <GameTrailer gameId={game.id}/>
+      <GameScreenShots gameId={game.id}/>
     </>
   );
 };
